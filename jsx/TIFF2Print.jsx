@@ -1,49 +1,48 @@
-// TIFF2Print.jsx for Adobe Photoshop
-// Description: Simple script to save a print ready file in Photoshop.
-// Features: + Does not change the source file
-//           + Removes guides, empty vector paths before saving TIFF
-//           + Shorten measure units MM > CM > M when possible
-//           + The file name template is configured in the script code
-//           + Allows you to overwrite an existing file or save it with a new index
-// Date: August, 2018
-// Author: Sergey Osokin, email: hi@sergosokin.ru
-// ============================================================================
-// Donate (optional): If you find this script helpful and want to support me 
-// by shouting me a cup of coffee, you can by via PayPal http://www.paypal.me/osokin/usd
-// ============================================================================
-// Installation:
-// 1. Place script in:
-//    Win (32 bit): C:\Program Files (x86)\Adobe\Adobe Photoshop [vers.]\Presets\Scripts\
-//    Win (64 bit): C:\Program Files\Adobe\Adobe Photoshop [vers.] (64 Bit)\Presets\Scripts\
-//    Mac OS: <hard drive>/Applications/Adobe Photoshop [vers.]/Presets/Scripts
-// 2. Restart Photoshop
-// 3. Choose File > Scripts > TIFF2Print
-// ============================================================================
-// Donate (optional): If you find this script helpful and want to support me 
-// by shouting me a cup of coffee, you can by via PayPal http://www.paypal.me/osokin/usd
-// ============================================================================
-// NOTICE:
-// Tested with Adobe Photoshop CS5 (Win), CC 2017 & 2018 (Mac), CC 2018 (Win).
-// This script is provided "as is" without warranty of any kind.
-// Free to use, not for sale.
-// ============================================================================
-// Released under the MIT license.
-// http://opensource.org/licenses/mit-license.php
-// ============================================================================
-// Check other author's scripts: https://github.com/creold
+/*
+  TIFF2Print.jsx for Adobe Photoshop
+  Description: Simple script to save a print ready file in Photoshop.
+  Features: + Does not change the source file
+            + Removes guides, empty vector paths before saving TIFF
+            + Shorten measure units MM > CM > M when possible
+            + The file name template is configured in the script code
+            + Allows you to overwrite an existing file or save it with a new index
+  Date: August, 2018
+  Author: Sergey Osokin, email: hi@sergosokin.ru
 
-#target photoshop
+  Installation: https://github.com/creold/photoshop-scripts#how-to-run-scripts
+
+  Release notes:
+  1.0 Initial version
+  1.1 Added ZIP compression.
+
+  Donate (optional):
+  If you find this script helpful, you can buy me a coffee
+  - via YooMoney https://yoomoney.ru/to/410011149615582
+  - via QIWI https://qiwi.com/n/OSOKIN
+  - via Donatty https://donatty.com/sergosokin
+  - via PayPal http://www.paypal.me/osokin/usd
+
+  NOTICE:
+  Tested with Adobe Photoshop CS5 (Win), CC 2017 & 2018 (Mac), CC 2018 (Win).
+  This script is provided "as is" without warranty of any kind.
+  Free to use, not for sale.
+
+  Released under the MIT license.
+  http://opensource.org/licenses/mit-license.php
+
+  Check other author's scripts: https://github.com/creold
+*/
+
+//@target photoshop
 app.bringToFront();
 
 // Const
 var scriptName = 'TIFF2Print',
-  scriptVersion = '1.0',
-  scriptSettings = scriptName + "_settings",
-  scriptAuthor = '\u00A9 Sergey Osokin, 2018',
-  scriptDonate = 'Donate via PayPal';
+    scriptVersion = 'v.1.1',
+    scriptSettings = scriptName + "_settings";
 
 // Configuration
-if (app.documents.length > 0) {
+if (documents.length > 0) {
   var originDoc = app.activeDocument,
     savePath = '',
     saveUnits = app.preferences.rulerUnits, // Save current units
@@ -56,7 +55,7 @@ if (app.documents.length > 0) {
     colorProfile = false, //Embed color profile in print file
     jpegQuality = 9, // Maximum value: 12
     jpgSizeMax = 1200, // Unit: px. Size on the larger side
-    sizePref, unitPref, compressPref, previewPref; // Declare variables to initialize settings
+    compressPref; // Declare variables to initialize settings
 }
 
 // Main function
@@ -65,94 +64,69 @@ function main() {
     alert('Error: \nOpen a document and try again.');
     return; // Stop script
   }
-  initSettings();
   uiDialog().show();
 }
 
 // Create dialog window
 function uiDialog() {
-  var win = new Window('dialog', scriptName + ' ver.' + scriptVersion, undefined);
-  win.orientation = 'column';
-  win.alignChildren = ['fill', 'fill'];
+  var win = new Window('dialog', scriptName + ' ' + scriptVersion);
+      win.orientation = 'column';
+      win.alignChildren = ['fill', 'fill'];
 
-  var namePan = win.add('panel', undefined, 'Name settings');
-  namePan.alignChildren = 'left';
+  var namePnl = win.add('panel', undefined, 'Name settings');
+      namePnl.alignChildren = 'left';
   // Add size in file name or not
-  var chkName = namePan.add('checkbox', undefined, 'Add width and height (mm)');
-  chkName.helpTip = 'Sample: <your-filename>-print.tif or <your-filename>-210x99mm-print.tif';
-  chkName.value = sizePref;
+  var isSize = namePnl.add('checkbox', undefined, 'Add width and height (mm)');
+      isSize.helpTip = 'Sample: <your-filename>-print.tif or <your-filename>-210x99mm-print.tif';
+      isSize.value = true;
   // Convert unit values when possible
-  var chkUnit = namePan.add('checkbox', undefined, 'Shorten measure unit (cm/m)');
-  chkUnit.helpTip = 'If size > 1000 mm convert mm > cm > m';
-  chkUnit.value = unitPref;
-  if (!sizePref) {
-    chkUnit.enabled = false;
-  }
+  var isShort = namePnl.add('checkbox', undefined, 'Shorten measure unit (cm/m)');
+      isShort.helpTip = 'If size > 1000 mm convert mm > cm > m';
+      isShort.value = false;
 
   // Enable/disable convertation panel
-  chkName.addEventListener('click', (function () {
-    if (this.value) {
-      chkUnit.enabled = true;
-    }
-    if (!this.value) {
-      chkUnit.enabled = false;
-    }
-  }), false);
+  isSize.onClick = function () {
+    isShort.enabled = this.value ? true : false;
+  }
 
   // Select image compression
-  var compressPan = win.add('panel', undefined, 'Image compression');
-  compressPan.alignChildren = 'left';
-  compressPan.orientation = 'row';
-  var noneCompression = compressPan.add('radiobutton', undefined, 'None');
-  var lzwCompression = compressPan.add('radiobutton', undefined, 'LZW');
-  if (compressPref) {
-    noneCompression.value = compressPref;
-  } else {
-    lzwCompression.value = true;
-  }
+  var compPnl = win.add('panel', undefined, 'Image compression');
+      compPnl.alignChildren = 'left';
+      compPnl.orientation = 'row';
+  var noneComp = compPnl.add('radiobutton', undefined, 'None');
+      noneComp.value = true;
+  var lzwComp = compPnl.add('radiobutton', undefined, 'LZW');
+  var zipComp = compPnl.add('radiobutton', undefined, 'ZIP');
 
   // Generate preview image
   var previewPan = win.add('group');
-  previewPan.margins = [16, 0, 0, 0];
+      previewPan.margins = [16, 0, 0, 0];
   var preview = previewPan.add('checkbox', undefined, 'Save JPG preview');
-  preview.helpTip = 'Save a JPG of ' + jpgSizeMax + ' px on the larger side with the same name as the TIFF file';
-  preview.value = previewPref;
+      preview.helpTip = 'Save a JPG of ' + jpgSizeMax + 
+                        ' px on the larger side with ' + 
+                        'the same name as the TIFF file';
+      preview.value = true;
 
   // Action buttons
   var btns = win.add('group');
-  btns.alignChildren = ['fill', 'fill'];
+      btns.alignChildren = ['fill', 'fill'];
   var cancel = btns.add('button', undefined, 'Cancel', {name: 'cancel'});
-  cancel.helpTip = 'Press Esc to Close';
+      cancel.helpTip = 'Press Esc to Close';
   var ok = btns.add('button', undefined, 'OK', {name: 'ok'});
-  ok.helpTip = 'Press Enter to Run';
-  cancel.onClick = function () {
-    win.close();
-  }
+      ok.helpTip = 'Press Enter to Run';
+  
+  initSettings();
+
+  cancel.onClick = win.close;
+
   ok.onClick = okClick;
 
-  // Copyright
-  var copyright = win.add('panel', undefined, '', {borderStyle:'none'});
-  copyright.orientation = 'column';
-  copyright.alignChild = ['center', 'center'];
-  copyright.alignment = 'fill';
-  copyright.margins = 5;
-  var lblCopyright = copyright.add('statictext');
-  lblCopyright.text = scriptAuthor;
-  var donate = copyright.add('button', undefined, scriptDonate);
-  // Opening PayPal donate page
-  donate.onClick = function () {
-    var fname, shortcut;
-    fname = '_PSscript_donate.url';
-    shortcut = new File('' + Folder.temp + '/' + fname);
-    shortcut.open('w');
-    shortcut.writeln('[InternetShortcut]');
-    shortcut.writeln('URL=https://www.paypal.me/osokin/usd');
-    shortcut.writeln();
-    shortcut.close();
-    shortcut.execute();
-    $.sleep(4000);
-    return shortcut.remove();
-  }
+  var copyright = win.add('statictext', undefined, '\u00A9 Sergey Osokin. Visit Github');
+      copyright.justify = 'center';
+
+  copyright.addEventListener('mousedown', function () {
+    openURL('https://github.com/creold');
+  });
 
   function okClick() {
     // Setting file path
@@ -166,34 +140,41 @@ function uiDialog() {
         return; // Return to dialog
       }
     }
-    var compresionType;
-    if (noneCompression.value) {
-      compresionType = TIFFEncoding.NONE;
-    } else {
-      compresionType = TIFFEncoding.TIFFLZW
-    };
+
+    var compType = TIFFEncoding.NONE;
+    if (lzwComp.value) {
+      compType = TIFFEncoding.TIFFLZW;
+    } else if (zipComp.value) {
+      compType = TIFFEncoding.TIFFZIP;
+    }
+
     // Ruler setup
-    if (chkName.value) {
+    if (isSize.value) {
       if (saveUnits != 'Units.MM') {
         app.preferences.rulerUnits = Units.MM;
       }
-      var docSize = calcSize(originDoc, chkUnit.value); // Calculate doc width & height value 
+      var docSize = calcSize(originDoc, isShort.value); // Calculate doc width & height value 
       sizeSuffix = divider + docSize.w + 'x' + docSize.h + docSize.unit; // Set suffix
     }
+
     var nameTpl = prepareName(originDoc) + sizeSuffix; // // Name template
+
     duplicateDoc(); // Duplicate Image
     clearAllGuides(); // Remove all guides from duplicate
+
     var doc = app.activeDocument;
     doc.flatten(); // Flatten Image
     delPaths(doc); // Remove empty paths
+
     try {
       if (savePath != null) {
         var fileName = decodeURI(savePath) + '/' + nameTpl;
         // Save print file
         var printName = fileName + divider + printSuffix;
-        SaveTIFF(printName, printExt, compresionType);
+        SaveTIFF(printName, printExt, compType);
       }
-    } catch (e) { }
+    } catch (e) {}
+
     // Save preview file 
     if (preview.value == true) {
       resizeDoc(doc, jpgSizeMax); // Resize before save preview
@@ -201,42 +182,50 @@ function uiDialog() {
       var previewName = fileName + divider + previewSuffix;
       saveJPEG(previewName, previewExt, jpegQuality);
     }
+
     doc.close(SaveOptions.DONOTSAVECHANGES); // Close duplicate
     app.preferences.rulerUnits = saveUnits; // Restore original ruler units
     win.close();
+
     // Save user settings
-    sizePref = chkName.value, unitPref = chkUnit.value,
-      compressPref = noneCompression.value, previewPref = preview.value;
     saveSettings();
   }
-  return win;
-}
 
-function initSettings() {
-  try {
-    var desc = app.getCustomOptions(scriptSettings);
-  } catch (e) { }
-  if (undefined != desc) {
+  function initSettings() {
     try {
-      sizePref = desc.getBoolean(0);
-      unitPref = desc.getBoolean(1);
-      compressPref = desc.getBoolean(2);
-      previewPref = desc.getBoolean(3);
-      return;
+      var desc = app.getCustomOptions(scriptSettings);
+    } catch (e) {}
+    if (undefined != desc) {
+      try {
+        isSize.value = desc.getBoolean(0);
+        isShort.value = desc.getBoolean(1);
+        compPnl.children[desc.getInteger(2)].value = true;
+        preview.value = desc.getBoolean(3);
+        if (!isSize.value) isShort.enabled = false;
+        return;
+      }
+      catch (e) {}
     }
-    catch (e) { }
-  }
-  sizePref = true, unitPref = false,
-    compressPref = true, previewPref = true;
-}
 
-function saveSettings() {
-  var desc = new ActionDescriptor();
-  desc.putBoolean(0, sizePref);
-  desc.putBoolean(1, unitPref);
-  desc.putBoolean(2, compressPref);
-  desc.putBoolean(3, previewPref);
-  app.putCustomOptions(scriptSettings, desc, true);
+    compressPref = true;
+  }
+
+  function saveSettings() {
+    var comp = 0;
+    if (lzwComp.value) {
+      comp = 1;
+    } else if (zipComp.value) {
+      comp = 2;
+    }
+    var desc = new ActionDescriptor();
+    desc.putBoolean(0, isSize.value);
+    desc.putBoolean(1, isShort.value);
+    desc.putInteger(2, comp);
+    desc.putBoolean(3, preview.value);
+    app.putCustomOptions(scriptSettings, desc, true);
+  }
+
+  return win;
 }
 
 // Calculate doc width & height value 
@@ -317,12 +306,12 @@ function delPaths(target) {
 function resizeDoc(doc, size) {
   app.preferences.rulerUnits = Units.PIXELS;
   if (doc.height.value > size || doc.width.value > size) {
-  // If height > width resize based on height. Change DPI to 72
-  if (doc.height.value > doc.width.value) {
-    doc.resizeImage(null, UnitValue(size, 'px'), 72, ResampleMethod.BICUBIC);
-  } else {
-    doc.resizeImage(UnitValue(size, 'px'), null, 72, ResampleMethod.BICUBIC);
-  }
+    // If height > width resize based on height. Change DPI to 72
+    if (doc.height.value > doc.width.value) {
+      doc.resizeImage(null, UnitValue(size, 'px'), 72, ResampleMethod.BICUBIC);
+    } else {
+      doc.resizeImage(UnitValue(size, 'px'), null, 72, ResampleMethod.BICUBIC);
+    }
   }
 }
 
@@ -360,9 +349,12 @@ function saveJPEG(fileName, ext, quality) {
 // Check if there is already such a file
 function saveFile(fileName, ext) {
   var file = File(fileName + ext);
-  var msg = 'A file with the same name already exists in the folder "' + decodeURI(file.parent.name) + '". Replacing it will overwrite its current contents.';
+  var msg = 'A file with the same name already exists in the folder "' + 
+            decodeURI(file.parent.name) + 
+            '". Replacing it will overwrite its current contents.';
   if (file.exists) {
-    var rewrite = confirm('"' + decodeURI(file.name) + '" already exists. Do you want to replace it?\n' + msg);
+    var rewrite = confirm('"' + decodeURI(file.name) + 
+                  '" already exists. Do you want to replace it?\n' + msg);
     if (!rewrite) {
       var counter = 2;
       do {
@@ -380,18 +372,17 @@ function fillZero(number, size) {
   return str.slice(str.length - size);
 }
 
-function showError(err) {
-  if (confirm(scriptName + ': an unknown error has occurred.\n' +
-    'Would you like to see more information?', true, 'Unknown Error')) {
-    alert(err + ': on line ' + err.line, 'Script Error', true);
-  }
+// Open link in browser
+function openURL(url) {
+  var html = new File(Folder.temp.absoluteURI + '/aisLink.html');
+  html.open('w');
+  var htmlBody = '<html><head><META HTTP-EQUIV=Refresh CONTENT="0; URL=' + url + '"></head><body> <p></body></html>';
+  html.write(htmlBody);
+  html.close();
+  html.execute();
 }
 
 // Run script
 try {
   main();
-} catch (e) {
-  if (e.number != 8007) {
-    showError(e);
-  }
-}
+} catch (e) {}
