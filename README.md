@@ -74,7 +74,7 @@ Generate JPG preview image from active document. Supports multiple saving with a
 Save all opened docs in one click.
 
 ## SelectShapesByColor
-Selects all vector layers in the document that have the same color as the active layer. Locked layers will also be selected. If you also want to select solid layers `Layer > New Fill Layer > Solid Color...`, edit in script file `var inclSolid = true`.
+Selects all vector layers and text objects in the document that have the same color as the active layer. Locked layers will also be selected. If you also want to select solid layers `Layer > New Fill Layer > Solid Color...`, edit in script file `var inclSolid = true`.
 
 ![SelectShapesByColor](https://i.ibb.co/12FjgfN/Select-Shapes-By-Color.gif) 
 

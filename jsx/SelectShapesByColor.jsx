@@ -8,6 +8,7 @@
 
   Release notes:
   0.1 Initial version
+  0.2 Added live text support
 
   Donate (optional):
   If you find this script helpful, you can buy me a coffee
@@ -47,19 +48,23 @@ function main() {
 // Extract color from Shape or Solid color
 function getColor(layer) {
   try {
-    var desc = getLayerDescriptor(layer);
-    var adjs = desc.getList(cTID('Adjs')); // Adjustments
+    if (layer.kind == LayerKind.TEXT) {
+      return layer.textItem.color.rgb.hexValue;
+    } else {
+      var desc = getLayerDescriptor(layer);
+      var adjs = desc.getList(cTID('Adjs')); // Adjustments
 
-    var clrDesc = adjs.getObjectValue(0),
-        color = clrDesc.getObjectValue(cTID('Clr '));
+      var clrDesc = adjs.getObjectValue(0),
+          color = clrDesc.getObjectValue(cTID('Clr '));
 
-    var red = Math.round(color.getDouble(cTID('Rd  '))),
-        green = Math.round(color.getDouble(cTID('Grn '))),
-        blue = Math.round(color.getDouble(cTID('Bl  ')));
+      var red = Math.round(color.getDouble(cTID('Rd  '))),
+          green = Math.round(color.getDouble(cTID('Grn '))),
+          blue = Math.round(color.getDouble(cTID('Bl  ')));
 
-    var rgbColor = setRGBColor(red, green, blue);
+      var rgbColor = setRGBColor(red, green, blue);
 
-    return rgbColor.rgb.hexValue;
+      return rgbColor.rgb.hexValue;
+    }
   } catch (e) {
     return ''; // Adjustments is undefined
   }
