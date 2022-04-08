@@ -11,6 +11,18 @@ This is a collection of JS scripts for Adobe Photoshop.
 
 The descriptions for each file can be found in the file’s header text. Test environment: Photoshop CC 2017-2019 (Mac OS).   
 
+## 📜 Scripts
+* ClearLayer
+* GeneratePreview
+* SaveAll
+* SelectShapesByColor `(new, 08.04.2022)`
+* TIFF2Print
+* ToggleLayersLocksByName
+
+<a href="http://bit.ly/2wLaIkq">
+  <img width="140" height="43" src="https://i.ibb.co/bLRwH1s/download-en-ps.png">
+</a>
+
 ## ▶️ How to run scripts
 
 #### Variant 1 — Install 
@@ -53,25 +65,18 @@ Simple script to clear layers content.
 
 ![ClearLayer](https://i.ibb.co/hV7NFxB/Clear-Layer.gif) 
 
-<a href="http://bit.ly/2wLaIkq">
-  <img width="140" height="43" src="https://i.ibb.co/mhhSkcW/download-en-ps.png">
-</a>
-
 ## GeneratePreview
-Generate JPG preview image from active document. Supports multiple saving with auto-numbering. If you want to change JPG size, edit number in script file `var jpegSizeMax = 1200;` .
+Generate JPG preview image from active document. Supports multiple saving with auto-numbering. If you want to change JPG size, edit number in script file `var jpegSizeMax = 1200`.
 
-![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif) 
-
-<a href="http://bit.ly/2wLaIkq">
-  <img width="140" height="43" src="https://i.ibb.co/mhhSkcW/download-en-ps.png">
-</a> 
+![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif)
 
 ## SaveAll
 Save all opened docs in one click.
 
-<a href="http://bit.ly/2wLaIkq">
-  <img width="140" height="43" src="https://i.ibb.co/mhhSkcW/download-en-ps.png">
-</a> 
+## SelectShapesByColor
+Selects all vector layers in the document that have the same color as the active layer. Locked layers will also be selected. If you also want to select solid layers `Layer > New Fill Layer > Solid Color...`, edit in script file `var inclSolid = true`.
+
+![SelectShapesByColor](https://i.ibb.co/12FjgfN/Select-Shapes-By-Color.gif) 
 
 ## TIFF2Print 1.0
 
@@ -87,17 +92,13 @@ Script to save a print ready .tif file.
 
 ![TIFF2Print](https://i.ibb.co/ypbCFtX/tiff2print.gif) 
 
-<a href="http://bit.ly/2wLaIkq">
-  <img width="140" height="43" src="https://i.ibb.co/mhhSkcW/download-en-ps.png">
-</a>
-
 ## ToggleLayersLocksByName
 Locks layers in the document based on the keyword in the name. Open the script file with a text editor if you want to specify another keyword and replace the text in quotes `key = '[lock]'`.
 
 ![ToggleLayersLocksByName](https://i.ibb.co/48zYWg4/Toggle-Layers-Locks-By-Name.gif) 
 
 <a href="http://bit.ly/2wLaIkq">
-  <img width="140" height="43" src="https://i.ibb.co/mhhSkcW/download-en-ps.png">
+  <img width="140" height="43" src="https://i.ibb.co/bLRwH1s/download-en-ps.png">
 </a>
 
 Don't forget sharing link with a friend 🙂 
