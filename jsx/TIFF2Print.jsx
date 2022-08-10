@@ -17,10 +17,11 @@
 
   Donate (optional):
   If you find this script helpful, you can buy me a coffee
+  - via DonatePay https://new.donatepay.ru/en/@osokin
+  - via Donatty https://donatty.com/sergosokin
   - via YooMoney https://yoomoney.ru/to/410011149615582
   - via QIWI https://qiwi.com/n/OSOKIN
-  - via Donatty https://donatty.com/sergosokin
-  - via PayPal http://www.paypal.me/osokin/usd
+  - via PayPal (temporarily unavailable) http://www.paypal.me/osokin/usd
 
   NOTICE:
   Tested with Adobe Photoshop CS5 (Win), CC 2017 & 2018 (Mac), CC 2018 (Win).
@@ -60,11 +61,32 @@ if (documents.length > 0) {
 
 // Main function
 function main() {
-  if (app.documents.length == 0) {
-    alert('Error: \nOpen a document and try again.');
-    return; // Stop script
-  }
+  if (!isCorrectEnv()) return;
   uiDialog().show();
+}
+
+// Check the script environment
+function isCorrectEnv() {
+  var args = ['app', 'document'];
+
+  for (var i = 0; i < args.length; i++) {
+    switch (args[i].toString().toLowerCase()) {
+      case 'app':
+        if (!/photoshop/i.test(app.name)) {
+          alert('Error\nRun script from Adobe Photoshop');
+          return false;
+        }
+        break;
+      case 'document':
+        if (!documents.length) {
+          alert('Error\nOpen a document and try again');
+          return false;
+        }
+        break;
+    }
+  }
+
+  return true;
 }
 
 // Create dialog window

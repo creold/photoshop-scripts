@@ -1,10 +1,10 @@
 /*
-  SelectShapesByColor.jsx for Adobe Illustrator
+  SelectShapesByColor.jsx for Adobe Photoshop
   Description: Select all Shape and Solid layers that have the same color as the selected layer
   Date: April, 2022
   Author: Sergey Osokin, email: hi@sergosokin.ru
 
-  Installation: https://github.com/creold/illustrator-scripts#how-to-run-scripts
+  Installation: https://github.com/creold/photoshop-scripts#how-to-run-scripts
 
   Release notes:
   0.1 Initial version
@@ -12,10 +12,11 @@
 
   Donate (optional):
   If you find this script helpful, you can buy me a coffee
+  - via DonatePay https://new.donatepay.ru/en/@osokin
+  - via Donatty https://donatty.com/sergosokin
   - via YooMoney https://yoomoney.ru/to/410011149615582
   - via QIWI https://qiwi.com/n/OSOKIN
-  - via Donatty https://donatty.com/sergosokin
-  - via PayPal http://www.paypal.me/osokin/usd
+  - via PayPal (temporarily unavailable) http://www.paypal.me/osokin/usd
 
   NOTICE:
   Tested with Adobe Photoshop CC 2019-2022.
@@ -31,11 +32,14 @@
 //@target photoshop
 
 function main() {
-  if (!documents.length) return;
+  if (!isCorrectEnv()) return;
 
   var inclSolid = false; // Include Adjustment Layer > Solid Color to selection
+  
+  var aLayer = activeDocument.activeLayer;
+  if (!aLayer.visible) return;
 
-  var sample = getColor(activeDocument.activeLayer), // Hex
+  var sample = getColor(aLayer), // Hex
       matches = search(sample, inclSolid); // Array of layer ID's
 
   deselect();
@@ -43,6 +47,30 @@ function main() {
   forEach(matches, function (e) {
     selectByID(e);
   });
+}
+
+// Check the script environment
+function isCorrectEnv() {
+  var args = ['app', 'document'];
+
+  for (var i = 0; i < args.length; i++) {
+    switch (args[i].toString().toLowerCase()) {
+      case 'app':
+        if (!/photoshop/i.test(app.name)) {
+          alert('Error\nRun script from Adobe Photoshop');
+          return false;
+        }
+        break;
+      case 'document':
+        if (!documents.length) {
+          alert('Error\nOpen a document and try again');
+          return false;
+        }
+        break;
+    }
+  }
+
+  return true;
 }
 
 // Extract color from Shape or Solid color
@@ -131,6 +159,7 @@ function getLayers(collection) {
   var out = [];
 
   forEach(collection, function(e) {
+    if (!e.visible) return;
     if (/art/i.test(e.typename)) { // ArtLayer
       out.push(e);
     } else if (/set/i.test(e.typename)) { // LayerSet

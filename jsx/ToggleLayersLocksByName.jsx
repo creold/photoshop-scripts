@@ -4,12 +4,15 @@
   Date: September, 2021
   Author: Sergey Osokin, email: hi@sergosokin.ru
 
+  Installation: https://github.com/creold/photoshop-scripts#how-to-run-scripts
+
   Donate (optional):
   If you find this script helpful, you can buy me a coffee
+  - via DonatePay https://new.donatepay.ru/en/@osokin
+  - via Donatty https://donatty.com/sergosokin
   - via YooMoney https://yoomoney.ru/to/410011149615582
   - via QIWI https://qiwi.com/n/OSOKIN
-  - via Donatty https://donatty.com/sergosokin
-  - via PayPal http://www.paypal.me/osokin/usd
+  - via PayPal (temporarily unavailable) http://www.paypal.me/osokin/usd
 
   NOTICE:
   Tested with Adobe Photoshop CC 2019.
@@ -25,7 +28,7 @@
 //@target photoshop
 
 function main() {
-  if (!app.documents.length) return;
+  if (!isCorrectEnv()) return;
 
   var doc = app.activeDocument,
       key = '[lock]',
@@ -34,23 +37,47 @@ function main() {
   allLayers = collectAllLayers(doc, allLayers);
   
   for (var i = 0, len = allLayers.length; i < len; i++) {
-    var theLayer = allLayers[i];
-    if (!theLayer.isBackgroundLayer && theLayer.name.indexOf(key) !== -1) {
-      theLayer.allLocked = !theLayer.allLocked;
+    var lyr = allLayers[i];
+    if (!lyr.isBackgroundLayer && lyr.name.indexOf(key) !== -1) {
+      lyr.allLocked = !lyr.allLocked;
     }
   }
 }
 
+// Check the script environment
+function isCorrectEnv() {
+  var args = ['app', 'document'];
+
+  for (var i = 0; i < args.length; i++) {
+    switch (args[i].toString().toLowerCase()) {
+      case 'app':
+        if (!/photoshop/i.test(app.name)) {
+          alert('Error\nRun script from Adobe Photoshop');
+          return false;
+        }
+        break;
+      case 'document':
+        if (!documents.length) {
+          alert('Error\nOpen a document and try again');
+          return false;
+        }
+        break;
+    }
+  }
+
+  return true;
+}
+
 function collectAllLayers(doc, allLayers) {
   for (var i = 0; i < doc.layers.length; i++) {
-    var theLayer = doc.layers[i];
-    if (theLayer.typename === 'ArtLayer') {
-      allLayers.push(theLayer);
-    } else if (theLayer.typename === 'LayerSet') {
-      allLayers.push(theLayer);
-      collectAllLayers(theLayer, allLayers);
+    var lyr = doc.layers[i];
+    if (lyr.typename === 'ArtLayer') {
+      allLayers.push(lyr);
+    } else if (lyr.typename === 'LayerSet') {
+      allLayers.push(lyr);
+      collectAllLayers(lyr, allLayers);
     } else {
-      collectAllLayers(theLayer, allLayers);
+      collectAllLayers(lyr, allLayers);
     }
   }
 
