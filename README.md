@@ -2,7 +2,7 @@
 
 # Adobe Photoshop Scripts
 
-[![Yotube](https://img.shields.io/badge/Telegram%20Channel-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
+![Downloads](https://img.shields.io/badge/Downloads-300+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram%20Channel-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
 
 *Instructions in other languages: [English](README.md), [Русский](README.ru.md)*
 
@@ -12,23 +12,18 @@ This is a collection of JS scripts for Adobe Photoshop.
 The descriptions for each file can be found in the file’s header text. Test environment: Photoshop CC 2017-2019 (Mac OS).   
 
 ## 📜 Scripts
-* ClearLayer
-* ExportPathsToAi `(new, 10.08.2022)`
-* GeneratePreview
-* SaveAll
-* SelectShapesByColor `(upd, 10.08.2022)`
-* TIFF2Print
-* ToggleLayersLocksByName
-
-<a href="http://bit.ly/2wLaIkq">
-  <img width="140" height="43" src="https://i.ibb.co/bLRwH1s/download-en-ps.png">
-</a>
+* [ClearLayer](https://github.com/creold/photoshop-scripts#clearlayer)
+* [ExportPathsToAi](https://github.com/creold/photoshop-scripts#exportpathstoai) `(new, 10.08.2022)`
+* [GeneratePreview](https://github.com/creold/photoshop-scripts#generatepreview)
+* [SaveAll](https://github.com/creold/photoshop-scripts#saveall)
+* [SelectShapesByColor](https://github.com/creold/photoshop-scripts#selectshapesbycolor) `(upd, 10.08.2022)`
+* [TIFF2Print](https://github.com/creold/photoshop-scripts#tiff2print-10)
+* [ToggleLayersLocksByName](https://github.com/creold/photoshop-scripts#togglelayerslocksbyname)
 
 ## How to download one script 
-1. Open the `.jsx` file in the directory
-2. Click to the `Raw` button in the right corner
-3. Press <kbd>Cmd/Ctrl</kbd> + <kbd>S</kbd> for download
-4. Delete `.txt` extension: `name.jsx.txt` > `name.jsx`
+1. In the script description, click the "Direct Link" button.
+2. The tab will open the script code.
+3. Press <kbd>Cmd/Ctrl</kbd> + <kbd>S</kbd> for download.
 
 
 ## How to run scripts
@@ -50,16 +45,16 @@ Drag and drop the script file (JS or JSX) on Adobe Photoshop icon
 I recommend the [Scripshon Trees](https://exchange.adobe.com/creativecloud.details.15873.scripshon-trees.html) panel. In it you can specify which folder your script files are stored in.
 
 ## 💸 Donate
-You can support my work on new scripts via [Tinkoff], [ЮMoney], [Donatty], [DonatePay]. [PayPal] is temporarily unavailable
+You can support my work on new scripts via [Buymeacoffee], [Tinkoff], [ЮMoney], [Donatty], [DonatePay].   
 
+[Buymeacoffee]: https://www.buymeacoffee.com/osokin
 [Tinkoff]: https://www.tinkoff.ru/rm/osokin.sergey127/SN67U9405/
 [ЮMoney]: https://yoomoney.ru/to/410011149615582
 [Donatty]: https://donatty.com/sergosokin
 [DonatePay]: https://new.donatepay.ru/@osokin
-[PayPal]: https://paypal.me/osokin/5usd
 
-<a href="https://www.tinkoff.ru/rm/osokin.sergey127/SN67U9405/">
-  <img width="111" height="40" src="https://i.ibb.co/hRsbYnM/tinkoff-badge.png">
+<a href="https://www.buymeacoffee.com/osokin">
+  <img width="111" height="40" src="https://i.ibb.co/0ssTJQ1/bmc-badge.png">
 </a>
 
 <a href="https://yoomoney.ru/to/410011149615582">
@@ -75,11 +70,15 @@ You can support my work on new scripts via [Tinkoff], [ЮMoney], [Donatty], [Don
 </a>
 
 ## ClearLayer
+[![Direct](https://img.shields.io/badge/Direct%20Link-ClearLayer.jsx-4873FF.svg)](http://bit.do/ps-clrlyr) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
 Simple script to clear layers content.
 
 ![ClearLayer](https://i.ibb.co/hV7NFxB/Clear-Layer.gif) 
 
 ## ExportPathsToAi
+[![Direct](https://img.shields.io/badge/Direct%20Link-ExportPathsToAi.jsx-4873FF.svg)](http://bit.do/ps-exppths) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
 Exports all visible vector layers from `.psd` to a `.ai` file in the same folder as the original file. Known Photoshop restrictions:
 
 * paths are exported unfilled
@@ -88,19 +87,26 @@ Exports all visible vector layers from `.psd` to a `.ai` file in the same folder
 ![ExportPathsToAi](https://i.ibb.co/SXt6r4X/Export-Paths-To-Ai.gif) 
 
 ## GeneratePreview
+[![Direct](https://img.shields.io/badge/Direct%20Link-GeneratePreview.jsx-4873FF.svg)](http://bit.do/ps-genprvw) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
 Generate JPG preview image from active document. Supports multiple saving with auto-numbering. If you want to change JPG size, edit number in script file `var jpegSizeMax = 1200`.
 
 ![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif)
 
 ## SaveAll
+[![Direct](https://img.shields.io/badge/Direct%20Link-SaveAll.jsx-4873FF.svg)](http://bit.do/ps-svall) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
 Save all opened docs in one click.
 
 ## SelectShapesByColor
+[![Direct](https://img.shields.io/badge/Direct%20Link-SelectShapesByColor.jsx-4873FF.svg)](http://bit.do/ps-selbycol) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
 Selects all vector layers and text objects in the document that have the same color as the active layer. Locked layers will also be selected. If you also want to select solid layers `Layer > New Fill Layer > Solid Color...`, edit in script file `var inclSolid = true`.
 
 ![SelectShapesByColor](https://i.ibb.co/12FjgfN/Select-Shapes-By-Color.gif) 
 
 ## TIFF2Print 1.0
+[![Direct](https://img.shields.io/badge/Direct%20Link-TIFF2Print.jsx-4873FF.svg)](http://bit.do/ps-tif2prt) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
 
 Script to save a print ready .tif file.   
 
@@ -115,13 +121,11 @@ Script to save a print ready .tif file.
 ![TIFF2Print](https://i.ibb.co/ypbCFtX/tiff2print.gif) 
 
 ## ToggleLayersLocksByName
+[![Direct](https://img.shields.io/badge/Direct%20Link-ToggleLayersLocksByName.jsx-4873FF.svg)](http://bit.do/ps-tglyrlock) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
 Locks layers in the document based on the keyword in the name. Open the script file with a text editor if you want to specify another keyword and replace the text in quotes `key = '[lock]'`.
 
 ![ToggleLayersLocksByName](https://i.ibb.co/48zYWg4/Toggle-Layers-Locks-By-Name.gif) 
-
-<a href="http://bit.ly/2wLaIkq">
-  <img width="140" height="43" src="https://i.ibb.co/bLRwH1s/download-en-ps.png">
-</a>
 
 Don't forget sharing link with a friend 🙂 
 
