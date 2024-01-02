@@ -48,10 +48,9 @@
 Если часто приходится запускать скрипты, то чтобы не открывать постоянно меню, можно установить бесплатную панель [Scripshon Trees](https://exchange.adobe.com/creativecloud.details.15873.scripshon-trees.html).
 
 ## Поддержка
-Вы можете поддержать мою работу над новыми скриптами и их распространение любой суммой через [Buymeacoffee], [FanTalks] (иностр. карты), [Tinkoff], [ЮMoney], [Donatty], [DonatePay].   
+Многие скрипты бесплатны для скачивания благодаря поддержке пользователей. Помогите продолжать разработку новых и обновление текущих скриптов, поддержав мою работу любой суммой через [Buymeacoffee] (иностр. карты), [Tinkoff], [ЮMoney], [Donatty], [DonatePay]. Спасибо.   
 
 [Buymeacoffee]: https://www.buymeacoffee.com/osokin
-[FanTalks]: https://fantalks.io/r/sergey
 [Tinkoff]: https://www.tinkoff.ru/rm/osokin.sergey127/SN67U9405/
 [ЮMoney]: https://yoomoney.ru/to/410011149615582
 [Donatty]: https://donatty.com/sergosokin
@@ -59,10 +58,6 @@
 
 <a href="https://www.buymeacoffee.com/osokin">
   <img width="111" height="40" src="https://i.ibb.co/0ssTJQ1/bmc-badge.png">
-</a>
-
-<a href="https://fantalks.io/r/sergey">
-  <img width="111" height="40" src="https://i.ibb.co/vcds3vF/fantalks-badge.png">
 </a>
 
 <a href="https://yoomoney.ru/to/410011149615582">
@@ -99,7 +94,7 @@
 
 Сохраняет JPG активного документа. При повторном запуске на документе может сохранять под новым номером, например, чтобы сохранять в множестве JPG разное состояние документа. Если хотите изменить размер JPG, откройте файл скрипта текстовым редактором и замените число в пикселях `var jpegSizeMax = 1200`. Это размер бОльшей стороны, которую скрипт автоматически определит и сохранит пропорционально.
 
-![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif) 
+![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif)
 
 ## SaveAll
 [![Direct](https://img.shields.io/badge/Прямая%20ссылка-SaveAll.jsx-4873FF.svg)](https://rebrand.ly/ps-svall) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  

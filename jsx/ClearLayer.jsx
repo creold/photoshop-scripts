@@ -9,7 +9,7 @@
   Donate (optional):
   If you find this script helpful, you can buy me a coffee
   - via Buymeacoffee: https://www.buymeacoffee.com/osokin
-  - via FanTalks https://fantalks.io/r/sergey
+  - via Donatty https://donatty.com/sergosokin
   - via DonatePay https://new.donatepay.ru/en/@osokin
   - via YooMoney https://yoomoney.ru/to/410011149615582
 
@@ -41,12 +41,12 @@ function main() {
 // https://community.adobe.com/t5/photoshop/how-to-find-selected-layers-and-run-events/td-p/10269273?page=1
 function getSelectedLayersIdx() {
   var selectedLayers = new Array
-  var ref = new ActionReference()
-  ref.putEnumerated(charIDToTypeID("Dcmn"), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"))
-  var desc = executeActionGet(ref)
-  if (desc.hasKey(stringIDToTypeID('targetLayers'))){
+  var ref = new ActionReference()
+  ref.putEnumerated(charIDToTypeID("Dcmn"), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"))
+  var desc = executeActionGet(ref)
+  if (desc.hasKey(stringIDToTypeID('targetLayers'))){
     desc = desc.getList(stringIDToTypeID('targetLayers'))
-    var selectedLayers = new Array()
+    var selectedLayers = new Array()
     for (var i = 0; i < desc.count; i++){
       try {
         activeDocument.backgroundLayer
@@ -65,18 +65,18 @@ function getSelectedLayersIdx() {
     } catch (e) {
         selectedLayers.push(executeActionGet(ref).getInteger(charIDToTypeID("ItmI")))
       }
-    }
+    }
   return selectedLayers
-};  
+}
 
 function makeActiveByIndex(idx, visible) {
   var desc = new ActionDescriptor()
-  var ref = new ActionReference()
-  ref.putIndex(charIDToTypeID("Lyr "), idx)
-  desc.putReference(charIDToTypeID("null"), ref)
-  desc.putBoolean(charIDToTypeID("MkVs"), visible)
-  executeAction(charIDToTypeID("slct"), desc, DialogModes.NO)
-};  
+  var ref = new ActionReference()
+  ref.putIndex(charIDToTypeID("Lyr "), idx)
+  desc.putReference(charIDToTypeID("null"), ref)
+  desc.putBoolean(charIDToTypeID("MkVs"), visible)
+  executeAction(charIDToTypeID("slct"), desc, DialogModes.NO)
+}
 
 // Run script
 try {
