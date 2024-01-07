@@ -9,12 +9,13 @@
 ## 👨‍💻 Привет
 Это коллекция авторских скриптов для Adobe Photoshop. 
 
-Описание каждого скрипта также находится внутри его файла. Тестировалось в Photoshop CC 2017-2019 (Mac OS).   
+Описание каждого скрипта также находится внутри его файла. Тестировалось в Photoshop CC 2019, 2024 (Mac OS).   
 
 ## Скрипты
 * [ClearLayer](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#clearlayer)
 * [ExportPathsToAi](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#exportpathstoai) `(new, 10.08.2022)`
 * [GeneratePreview](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#generatepreview)
+* [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#renameartboardassize) `(new, 07.01.2024)`
 * [SaveAll](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#saveall)
 * [SelectShapesByColor](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#selectshapesbycolor) `(upd, 10.08.2022)`
 * [TIFF2Print](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#tiff2print-10)
@@ -96,6 +97,16 @@
 
 ![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif)
 
+## RenameArtboardAsSize
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-RenameArtboardAsSize.jsx-4873FF.svg)](https://rebrand.ly/ps-renabsassize) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+
+Добавляет к имени артборда его размеры в единицах измерения из `Preferences > Units & Rulers`.
+
+> **Note**   
+> [Версия скрипта для Иллюстратора](https://github.com/creold/illustrator-scripts/blob/master/md/Artboard.ru.md#renameartboardassize)
+
+![RenameArtboardAsSize](https://i.ibb.co/1nzr1xh/Rename-Artboard-As-Size.gif)
+
 ## SaveAll
 [![Direct](https://img.shields.io/badge/Прямая%20ссылка-SaveAll.jsx-4873FF.svg)](https://rebrand.ly/ps-svall) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
@@ -132,15 +143,15 @@
 
 Не забывайте поделиться ссылкой со знакомыми дизайнерами 🙂 
 
-## 🤝 Развитие
+## Развитие
 
 Нашли ошибку? [Создайте запрос](https://github.com/creold/photoshop-scripts/issues) на Github или напишите мне на почту.
 
-## ✉️ Контакты
+## Контакты
 Email <hi@sergosokin.ru>  
 Telegram [@sergosokin](https://t.me/sergosokin)
 
-### 📝 Лицензия
+### Лицензия
 
 Скрипты распространяются по лицензии MIT.   
 Больше деталей во вложенном файле LICENSE.

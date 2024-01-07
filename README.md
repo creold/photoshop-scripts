@@ -9,16 +9,21 @@
 ## 👨‍💻 Hi
 This is a collection of JS scripts for Adobe Photoshop.
 
-The descriptions for each file can be found in the file’s header text. Test environment: Photoshop CC 2017-2019 (Mac OS).   
+The descriptions for each file can be found in the file’s header text. Test environment: Photoshop CC 2019, 2024 (Mac OS).   
 
 ## Scripts
 * [ClearLayer](https://github.com/creold/photoshop-scripts#clearlayer)
 * [ExportPathsToAi](https://github.com/creold/photoshop-scripts#exportpathstoai) `(new, 10.08.2022)`
 * [GeneratePreview](https://github.com/creold/photoshop-scripts#generatepreview)
+* [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts#renameartboardassize) `(new, 07.01.2024)`
 * [SaveAll](https://github.com/creold/photoshop-scripts#saveall)
 * [SelectShapesByColor](https://github.com/creold/photoshop-scripts#selectshapesbycolor) `(upd, 10.08.2022)`
 * [TIFF2Print](https://github.com/creold/photoshop-scripts#tiff2print-10)
 * [ToggleLayersLocksByName](https://github.com/creold/photoshop-scripts#togglelayerslocksbyname)
+
+<a href="http://bit.ly/2wLaIkq">
+  <img width="126" height="43" src="https://i.ibb.co/bLRwH1s/download-en-ps.png">
+</a>
 
 ## How to download one script 
 1. In the script description, click the "Direct Link" button.
@@ -93,6 +98,16 @@ Generate JPG preview image from active document. Supports multiple saving with a
 
 ![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif)
 
+## RenameArtboardAsSize
+[![Direct](https://img.shields.io/badge/Direct%20Link-RenameArtboardAsSize.jsx-4873FF.svg)](https://rebrand.ly/ps-renabsassize) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
+Renames artboards according to their size in units from `Preferences > Units & Rulers` menu.
+
+> **Note**   
+> [Script version for Adobe Illustrator](https://github.com/creold/illustrator-scripts/blob/master/md/Artboard.md#renameartboardassize)
+
+![RenameArtboardAsSize](https://i.ibb.co/1nzr1xh/Rename-Artboard-As-Size.gif)
+
 ## SaveAll
 [![Direct](https://img.shields.io/badge/Direct%20Link-SaveAll.jsx-4873FF.svg)](https://rebrand.ly/ps-svall) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
 
@@ -129,15 +144,15 @@ Locks layers in the document based on the keyword in the name. Open the script f
 
 Don't forget sharing link with a friend 🙂 
 
-## 🤝 Contribute
+## Contribute
 
 Found a bug? Please [submit a new issues](https://github.com/creold/photoshop-scripts/issues) on GitHub.
 
-## ✉️ Contact
+## Contact
 Email <hi@sergosokin.ru>  
 Telegram [@sergosokin](https://t.me/sergosokin)
 
-### 📝 License
+### License
 
 All scripts is licensed under the MIT licence.  
 See the included LICENSE file for more details.
