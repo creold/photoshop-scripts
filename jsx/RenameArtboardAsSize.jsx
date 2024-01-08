@@ -8,6 +8,7 @@
 
   Release notes:
   0.1 Initial version
+  0.1.1 Fixed convertUnits() function
 
   Donate (optional):
   If you find this script helpful, you can buy me a coffee
@@ -68,7 +69,7 @@ function invokeUI(prefs) {
 
   var isCurr = rangePnl.add('radiobutton', undefined, 'Active artboard');
 
-  // Range
+  // Options
   var optPnl = win.add('panel', undefined, 'Options');
       optPnl.alignChildren = ['fill', 'center'];
       optPnl.margins = [12, 14, 10, 14];
@@ -86,11 +87,16 @@ function invokeUI(prefs) {
   var btns = win.add('group');
       btns.alignChildren = ['fill', 'center'];
 
-  var cancel = btns.add('button', undefined, 'Cancel', { name: 'cancel' });
-      cancel.helpTip = 'Press Esc to Close';
-
-  var ok = btns.add('button', undefined, 'OK', { name: 'ok' });
-      ok.helpTip = 'Press Enter to Run';
+  var cancel, ok;
+  if (/mac/i.test($.os)) {
+    cancel = btns.add('button', undefined, 'Cancel', { name: 'cancel' });
+    ok = btns.add('button', undefined, 'OK', { name: 'ok' });
+  } else {
+    ok = btns.add('button', undefined, 'OK', { name: 'ok' });
+    cancel = btns.add('button', undefined, 'Cancel', { name: 'cancel' });
+  }
+  cancel.helpTip = 'Press Esc to Close';
+  ok.helpTip = 'Press Enter to Run';
 
   var copyright = win.add('statictext', undefined, '\u00A9 Sergey Osokin. Visit Github');
   copyright.justify = 'center';
@@ -159,6 +165,7 @@ function renameArtboard(ab, prefs) {
   var separator = /\s/.test(abName) ? ' ' : (/-/.test(abName) ? '-' : prefs.separator);
 
   var abRect = getArtboardSize(ab);
+
   var width = convertUnits(abRect[2] - abRect[0], 'px', prefs.units);
   var height = convertUnits(abRect[3] - abRect[1], 'px', prefs.units);
 
@@ -252,7 +259,11 @@ function sTID(s) {
 
 // Convert units of measurement
 function convertUnits(value, currUnits, newUnits) {
-  return UnitValue(value, currUnits).as(newUnits);
+  UnitValue.baseUnit = UnitValue (1 / activeDocument.resolution, 'in');
+  var newValue = new UnitValue(value, currUnits);
+  newValue = newValue.as(newUnits);
+  UnitValue.baseUnit = null;
+  return newValue;
 }
 
 

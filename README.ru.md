@@ -15,7 +15,7 @@
 * [ClearLayer](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#clearlayer)
 * [ExportPathsToAi](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#exportpathstoai) `(new, 10.08.2022)`
 * [GeneratePreview](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#generatepreview)
-* [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#renameartboardassize) `(new, 07.01.2024)`
+* [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#renameartboardassize) `(new, 08.01.2024)`
 * [SaveAll](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#saveall)
 * [SelectShapesByColor](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#selectshapesbycolor) `(upd, 10.08.2022)`
 * [TIFF2Print](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#tiff2print-10)

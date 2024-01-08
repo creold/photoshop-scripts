@@ -15,7 +15,7 @@ The descriptions for each file can be found in the file’s header text. Test en
 * [ClearLayer](https://github.com/creold/photoshop-scripts#clearlayer)
 * [ExportPathsToAi](https://github.com/creold/photoshop-scripts#exportpathstoai) `(new, 10.08.2022)`
 * [GeneratePreview](https://github.com/creold/photoshop-scripts#generatepreview)
-* [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts#renameartboardassize) `(new, 07.01.2024)`
+* [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts#renameartboardassize) `(new, 08.01.2024)`
 * [SaveAll](https://github.com/creold/photoshop-scripts#saveall)
 * [SelectShapesByColor](https://github.com/creold/photoshop-scripts#selectshapesbycolor) `(upd, 10.08.2022)`
 * [TIFF2Print](https://github.com/creold/photoshop-scripts#tiff2print-10)
