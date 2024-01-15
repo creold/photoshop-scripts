@@ -2,7 +2,7 @@
 
 # Adobe Photoshop Scripts
 
-![Downloads](https://img.shields.io/badge/Downloads-300+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram%20Channel-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
+![Downloads](https://img.shields.io/badge/Downloads-700+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram%20Channel-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
 
 *Instructions in other languages: [English](README.md), [Русский](README.ru.md)*
 
@@ -12,6 +12,7 @@ This is a collection of JS scripts for Adobe Photoshop.
 The descriptions for each file can be found in the file’s header text. Test environment: Photoshop CC 2019, 2024 (Mac OS).   
 
 ## Scripts
+* [ArtboardsFromCSV](https://github.com/creold/photoshop-scripts#artboardsfromcsv) `(new, 15.01.2024)`
 * [ClearLayer](https://github.com/creold/photoshop-scripts#clearlayer)
 * [ExportPathsToAi](https://github.com/creold/photoshop-scripts#exportpathstoai) `(new, 10.08.2022)`
 * [GeneratePreview](https://github.com/creold/photoshop-scripts#generatepreview)
@@ -73,6 +74,14 @@ Many scripts are free to download thanks to user support. Help me to develop new
 <a href="https://new.donatepay.ru/@osokin">
   <img width="111" height="40" src="https://i.ibb.co/0KJ94ND/donatepay-badge.png">
 </a>
+
+## ArtboardsFromCSV
+[![Direct](https://img.shields.io/badge/Direct%20Link-ArtboardsFromCSV.jsx-4873FF.svg)](https://rebrand.ly/ps-absfromcsv) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
+The script creates artboards vertically in the document using information from CSV tables. The size of the artboards is calculated in units from `Preferences → Units & Rulers`.   
+*Based on [Kristian Andersen's script](https://community.adobe.com/t5/photoshop-ecosystem-discussions/how-to-create-artboards-from-script/m-p/9345495#M112921), 2017.*   
+
+![ArtboardsFromCSV](https://i.ibb.co/BjGNPGz/Artboards-From-CSV.gif) 
 
 ## ClearLayer
 [![Direct](https://img.shields.io/badge/Direct%20Link-ClearLayer.jsx-4873FF.svg)](https://rebrand.ly/ps-clrlyr) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   

@@ -2,7 +2,7 @@
 
 # Adobe Photoshop Scripts
 
-![Downloads](https://img.shields.io/badge/Скачивания-300+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram--канал-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
+![Downloads](https://img.shields.io/badge/Скачивания-700+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram--канал-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
 
 *Инструкция на других языках: [English](README.md), [Русский](README.ru.md)*
 
@@ -12,6 +12,7 @@
 Описание каждого скрипта также находится внутри его файла. Тестировалось в Photoshop CC 2019, 2024 (Mac OS).   
 
 ## Скрипты
+* [ArtboardsFromCSV](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#artboardsfromcsv) `(new, 15.01.2024)`
 * [ClearLayer](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#clearlayer)
 * [ExportPathsToAi](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#exportpathstoai) `(new, 10.08.2022)`
 * [GeneratePreview](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#generatepreview)
@@ -72,6 +73,14 @@
 <a href="https://new.donatepay.ru/@osokin">
   <img width="111" height="40" src="https://i.ibb.co/0KJ94ND/donatepay-badge.png">
 </a>
+
+## ArtboardsFromCSV
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ArtboardsFromCSV.jsx-4873FF.svg)](https://rebrand.ly/ps-absfromcsv) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
+Скрипт создаёт в документе артборды в одну колонку по информации из CSV-таблиц. Размер артбордов рассчитывается в единицах из `Preferences → Units & Rulers`.   
+*Основано на скрипте [Кристиана Андерсена](https://community.adobe.com/t5/photoshop-ecosystem-discussions/how-to-create-artboards-from-script/m-p/9345495#M112921), 2017.*   
+
+![ArtboardsFromCSV](https://i.ibb.co/BjGNPGz/Artboards-From-CSV.gif) 
 
 ## ClearLayer
 [![Direct](https://img.shields.io/badge/Прямая%20ссылка-ClearLayer.jsx-4873FF.svg)](https://rebrand.ly/ps-clrlyr) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
