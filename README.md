@@ -2,7 +2,7 @@
 
 # Adobe Photoshop Scripts
 
-![Downloads](https://img.shields.io/badge/Downloads-700+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram%20Channel-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
+![Downloads](https://img.shields.io/badge/Downloads-1k+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram%20Channel-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
 
 *Instructions in other languages: [English](README.md), [Русский](README.ru.md)*
 
@@ -14,8 +14,9 @@ The descriptions for each file can be found in the file’s header text. Test en
 ## Scripts
 * [ArtboardsFromCSV](https://github.com/creold/photoshop-scripts#artboardsfromcsv) `(new, 15.01.2024)`
 * [ClearLayer](https://github.com/creold/photoshop-scripts#clearlayer)
-* [ExportPathsToAi](https://github.com/creold/photoshop-scripts#exportpathstoai) `(new, 10.08.2022)`
+* [ExportPathsToAi](https://github.com/creold/photoshop-scripts#exportpathstoai)
 * [GeneratePreview](https://github.com/creold/photoshop-scripts#generatepreview)
+* [MultiEditText](https://github.com/creold/photoshop-scripts#multiedittext) `(new, 10.04.2024)`
 * [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts#renameartboardassize) `(new, 08.01.2024)`
 * [SaveAll](https://github.com/creold/photoshop-scripts#saveall)
 * [SelectShapesByColor](https://github.com/creold/photoshop-scripts#selectshapesbycolor) `(upd, 10.08.2022)`
@@ -30,7 +31,6 @@ The descriptions for each file can be found in the file’s header text. Test en
 1. In the script description, click the "Direct Link" button.
 2. The tab will open the script code.
 3. Press <kbd>Cmd/Ctrl</kbd> + <kbd>S</kbd> for download.
-
 
 ## How to run scripts
 
@@ -53,13 +53,13 @@ I recommend the [Scripshon Trees](https://exchange.adobe.com/creativecloud.detai
 ## Donate
 Many scripts are free to download thanks to user support. Help me to develop new scripts and update existing ones by supporting my work with any amount via [Buymeacoffee], [Tinkoff], [ЮMoney], [Donatty], [DonatePay]. Thank you.
 
-[Buymeacoffee]: https://www.buymeacoffee.com/osokin
+[Buymeacoffee]: https://www.buymeacoffee.com/aiscripts
 [Tinkoff]: https://www.tinkoff.ru/rm/osokin.sergey127/SN67U9405/
 [ЮMoney]: https://yoomoney.ru/to/410011149615582
 [Donatty]: https://donatty.com/sergosokin
 [DonatePay]: https://new.donatepay.ru/@osokin
 
-<a href="https://www.buymeacoffee.com/osokin">
+<a href="https://www.buymeacoffee.com/aiscripts">
   <img width="111" height="40" src="https://i.ibb.co/0ssTJQ1/bmc-badge.png">
 </a>
 
@@ -107,12 +107,29 @@ Generate JPG preview image from active document. Supports multiple saving with a
 
 ![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif)
 
+## MultiEditText
+[![Direct](https://img.shields.io/badge/Direct%20Link-MultiEditText.jsx-4873FF.svg)](https://rebrand.ly/ps-metxt) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
+Multi-editing of selected text layers. The script allows you to enter the same text, replace the current text layer content or add the entered text to the current one.
+
+* Edit Separately - edit contents of frames separately, contents are separated by `@@@@` symbols.
+* List by XY - sort the order of texts by their position, otherwise they will be displayed in order in layers
+* Reverse Apply - replace contents in reverse order
+
+> [!TIP]   
+> If you want to change the size of the text area, open the script file with a text editor and change the CFG `width: 300` and `height: 210` to another value. The key to displaying different content is `ph: '<text>'` and the text divider `divider: '\n@@@@@\n'`, where `\n` is a line break. `softBreak: '@#'` — soft line break char.   
+> For a line break (new paragraph), use <kbd>Ctrl</kbd> + <kbd>Enter</kbd> on a PC or <kbd>Enter</kbd> on Mac OS. To insert a soft line break chat (no paragraph indent), press <kbd>Shift</kbd> + <kbd>Enter</kbd>.
+
+See also [Adobe Illustrator version](https://github.com/creold/illustrator-scripts/blob/master/md/Text.md)   
+
+![MultiTextEdit](https://i.ibb.co/Wngmytk/Multi-Edit-Text.gif)
+
 ## RenameArtboardAsSize
 [![Direct](https://img.shields.io/badge/Direct%20Link-RenameArtboardAsSize.jsx-4873FF.svg)](https://rebrand.ly/ps-renabsassize) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
 
 Renames artboards according to their size in units from `Preferences > Units & Rulers` menu.
 
-> **Note**   
+> [!NOTE]   
 > [Script version for Adobe Illustrator](https://github.com/creold/illustrator-scripts/blob/master/md/Artboard.md#renameartboardassize)
 
 ![RenameArtboardAsSize](https://i.ibb.co/1nzr1xh/Rename-Artboard-As-Size.gif)

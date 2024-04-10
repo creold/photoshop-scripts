@@ -2,7 +2,7 @@
 
 # Adobe Photoshop Scripts
 
-![Downloads](https://img.shields.io/badge/Скачивания-700+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram--канал-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
+![Downloads](https://img.shields.io/badge/Скачивания-1k+-27CF7D.svg) [![Telegram](https://img.shields.io/badge/Telegram--канал-%40aiscripts-0088CC.svg)](https://t.me/aiscripts) [![Yotube](https://img.shields.io/badge/Youtube-%40SergOsokinArt-FF0000.svg)](https://www.youtube.com/c/SergOsokinArt/videos)
 
 *Инструкция на других языках: [English](README.md), [Русский](README.ru.md)*
 
@@ -14,8 +14,9 @@
 ## Скрипты
 * [ArtboardsFromCSV](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#artboardsfromcsv) `(new, 15.01.2024)`
 * [ClearLayer](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#clearlayer)
-* [ExportPathsToAi](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#exportpathstoai) `(new, 10.08.2022)`
-* [GeneratePreview](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#generatepreview)
+* [ExportPathsToAi](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#exportpathstoai)
+* [GeneratePreview](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#multiedittext)
+* [MultiEditText](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#generatepreview) `(new, 10.04.2024)`
 * [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#renameartboardassize) `(new, 08.01.2024)`
 * [SaveAll](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#saveall)
 * [SelectShapesByColor](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#selectshapesbycolor) `(upd, 10.08.2022)`
@@ -52,13 +53,13 @@
 ## Поддержка
 Многие скрипты бесплатны для скачивания благодаря поддержке пользователей. Помогите продолжать разработку новых и обновление текущих скриптов, поддержав мою работу любой суммой через [Buymeacoffee] (иностр. карты), [Tinkoff], [ЮMoney], [Donatty], [DonatePay]. Спасибо.   
 
-[Buymeacoffee]: https://www.buymeacoffee.com/osokin
+[Buymeacoffee]: https://www.buymeacoffee.com/aiscripts
 [Tinkoff]: https://www.tinkoff.ru/rm/osokin.sergey127/SN67U9405/
 [ЮMoney]: https://yoomoney.ru/to/410011149615582
 [Donatty]: https://donatty.com/sergosokin
 [DonatePay]: https://new.donatepay.ru/@osokin
 
-<a href="https://www.buymeacoffee.com/osokin">
+<a href="https://www.buymeacoffee.com/aiscripts">
   <img width="111" height="40" src="https://i.ibb.co/0ssTJQ1/bmc-badge.png">
 </a>
 
@@ -106,12 +107,29 @@
 
 ![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif)
 
+## MultiEditText
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-MultiEditText.jsx-4873FF.svg)](https://rebrand.ly/ps-metxt) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+
+Мультиредактирование выбранных текстовых слоев. Скрипт позволяет вводить одинаковый текст, заменяя текущее содержимое текстового слоя или добавляя введенный текст к текущему.
+
+* Edit Separately - редактировать содержимое фреймов раздельно, контент разделяется символами `@@@`
+* List by XY - сортировать порядок текстов по их позиции, иначе выводится по порядку в слоях
+* Reverse Apply - заменить контент в обратном порядке
+
+> [!TIP]   
+> Если хотите изменить размер текстовой области, то откройте файл скрипта текстовым редактором и поменяйте CFG `width: 300` и `height: 210` на другое число. Ключ для отображения разного контента `ph: '<text>'` и разделитель текстов `divider: '\n@@@\n'`, где `\n` — перенос строки.`softBreak: '@#'` — символ мягкого переноса.   
+> Для переноса строки (новый абзац) используйте <kbd>Ctrl</kbd> + <kbd>Enter</kbd> на ПК или <kbd>Enter</kbd> на Mac OS. Для вставки специального символа мягкого переноса (без абзацного отступа) нажмите <kbd>Shift</kbd> + <kbd>Enter</kbd>.
+
+Смотрите также [версию для Adobe Illustrator](https://github.com/creold/illustrator-scripts/blob/master/md/Text.ru.md)   
+
+![MultiTextEdit](https://i.ibb.co/Wngmytk/Multi-Edit-Text.gif)
+
 ## RenameArtboardAsSize
 [![Direct](https://img.shields.io/badge/Прямая%20ссылка-RenameArtboardAsSize.jsx-4873FF.svg)](https://rebrand.ly/ps-renabsassize) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Добавляет к имени артборда его размеры в единицах измерения из `Preferences > Units & Rulers`.
 
-> **Note**   
+> [!NOTE]   
 > [Версия скрипта для Иллюстратора](https://github.com/creold/illustrator-scripts/blob/master/md/Artboard.ru.md#renameartboardassize)
 
 ![RenameArtboardAsSize](https://i.ibb.co/1nzr1xh/Rename-Artboard-As-Size.gif)
