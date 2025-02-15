@@ -2,6 +2,7 @@
   MultiEditText.jsx for Adobe Photoshop
   Description: Bulk editing of text layer contents. Replaces content separately or with the same text
   Date: April, 2024
+  Modification date: February, 2025
   Author: Sergey Osokin, email: hi@sergosokin.ru
 
   Installation: https://github.com/creold/photoshop-scripts#how-to-run-scripts
@@ -11,6 +12,7 @@
   *******************************************************************************************
 
   Release notes:
+  0.2 Added button to reset texts, saving entered texts when switching options
   0.1 Initial version
 
   Donate (optional):
@@ -36,12 +38,12 @@
 function main() {
   var SCRIPT = {
     name: 'Multi-edit Text',
-    version: 'v0.1'
+    version: 'v0.2'
   };
 
   var CFG = {
     width: 300, // Text area width, px
-    height: 200, // Text area height, px
+    height: 240, // Text area height, px
     ph: '<text>', // Content display placeholder
     divider: '\n@@@\n', // Symbol for separating multiple text layers
     softBreak: '@#', // Soft line break char
@@ -60,6 +62,8 @@ function main() {
     return;
   }
 
+  var isUndo = false;
+
   var sortedTexts = [].concat(texts);
   sortByPosition(sortedTexts, CFG.coordTolerance);
 
@@ -70,17 +74,24 @@ function main() {
   var placeholder = isEqualContents(texts, CFG.softBreak) ? 
   texts[0].textItem.contents.replace(/\x03/g, CFG.softBreak) : CFG.ph;
 
+  var tmpText = {
+    union: '',
+    separate: ''
+  };
+
   // DIALOG
   var win = new Window('dialog', SCRIPT.name + ' ' + SCRIPT.version);
       win.orientation = 'row';
       win.alignChildren = ['fill', 'top'];
 
+  // INPUT
   var input = win.add('edittext', [0, 0, CFG.width, CFG.height], placeholder, {multiline: true, scrolling: true });
       input.helpTip = 'Press Tab to preview after typing.\nNew line: PC - Ctrl+Enter, Mac OS - Enter.';
-      input.helpTip += '\nSoft line break special char: Shift+Enter';
+      input.helpTip += '\n\nInsert ' + CFG.divider.replace(/\n/g, '') + ' on a new line\nto separate text objects';
+      input.helpTip += '\n\nSoft line break special char: Shift+Enter';
       input.active = true;
 
-  // Options & Buttons
+  // OPTIONS AND BUTTONS
   var opt = win.add('group');
       opt.orientation = 'column';
       opt.alignChildren = ['fill', 'center'];
@@ -97,13 +108,16 @@ function main() {
   var cancel, ok;
   if (CFG.isMac) {
     cancel = opt.add('button', undefined, 'Cancel', { name: 'cancel' });
+    reset = opt.add('button', undefined, 'Reset', { name: 'reset' });
     ok = opt.add('button', undefined, 'OK', { name: 'ok' });
   } else {
     ok = opt.add('button', undefined, 'OK', { name: 'ok' });
+    reset = opt.add('button', undefined, 'Reset', { name: 'reset' });
     cancel = opt.add('button', undefined, 'Cancel', { name: 'cancel' });
   }
 
   cancel.helpTip = 'Press Esc to Close';
+  reset.helpTip = 'Reset to original texts';
   ok.helpTip = 'Press Enter to Run';
 
   var isPreview = opt.add('checkbox', undefined, 'Preview');
@@ -111,6 +125,7 @@ function main() {
   var copyright = opt.add('statictext', undefined, 'Visit Github');
   copyright.justify = 'center';
 
+  // EVENTS
   loadSettings();
 
   isSeparate.onClick = function () {
@@ -122,8 +137,6 @@ function main() {
   };
 
   isSort.onClick = function () {
-    input.text = getInputText(placeholder);
-    win.update();
     preview();
   }
 
@@ -133,7 +146,12 @@ function main() {
     preview();
   }
 
-  input.onChange = preview;
+  input.onChange = function () {
+    if (isSeparate.value) tmpText.separate = this.text;
+    else tmpText.union = this.text;
+    preview();
+  }
+
   isPreview.onClick = preview;
 
   // Insert soft line break char
@@ -145,6 +163,20 @@ function main() {
       preview();
     }
   });
+
+  reset.onClick = function () {
+    tmpText.separate = '';
+    tmpText.union = '';
+    input.text = getInputText(placeholder);
+
+    preview();
+
+    this.active = true;
+    this.active = false;
+
+    input.active = true;
+    win.update();
+  }
 
   cancel.onClick = win.close;
 
@@ -163,16 +195,24 @@ function main() {
     win.close();
   }
 
+  /**
+   * Retrieve the text based on the configuration settings and temporary text storage
+   *
+   * @param {string} def - The default text to return if no valid text is found
+   * @returns {string} - The processed text
+   */
   function getInputText(def) {
     var str = (isSort.value ? sortedContents : contents).join(CFG.divider);
     if (isSeparate.value) {
-      return isReverse.value ? reverseText(str, CFG.divider) : str;
+      return !isEmpty(tmpText.separate) ? tmpText.separate : (isReverse.value ? reverseText(str, CFG.divider) : str);
     } else {
-      return def;
+      return !isEmpty(tmpText.union) ? tmpText.union : def;
     }
   }
 
-  var isUndo = false;
+  /**
+   * Toggles the preview mode for text changes
+   */
   function preview() {
     try {
       if (isPreview.enabled && isPreview.value) {
@@ -188,13 +228,21 @@ function main() {
     } catch (err) {}
   }
 
+  /**
+   * Change the text content of selected text layers based on the provided input text
+   */
   function changeTexts() {
     if (isEmpty(input.text)) return;
+
+    // Create a regular expression for soft breaks
     var regex = new RegExp(CFG.softBreak, 'gmi');
 
+    // Handle separate text replacement mode
     if (isSeparate.value) {
       var srcTexts = [].concat(isSort.value ? sortedTexts : texts);
+      // Split the input text using the configured divider
       var inpTexts = input.text.replace(regex, '\x03').split(CFG.divider);
+      // Determine the minimum length to avoid out-of-bounds errors
       var min = Math.min(srcTexts.length, inpTexts.length);
 
       for (var i = 0; i < min; i++) {
@@ -206,8 +254,10 @@ function main() {
         }
       }
     } else {
+      // Handle combined text replacement mode
       for (var i = 0, len = texts.length; i < len; i++) {
         var txt = texts[i];
+        // Replace placeholders in the input text with the original content of the text layer
         var str = input.text.replace(/<text>/gi, contents[i])
         .replace(/[\r\n]+/gm, '\r')
         .replace(regex, '\x03');;
@@ -228,6 +278,20 @@ function main() {
     openURL('https://github.com/creold');
   });
 
+  /**
+   * Save UI options in Photoshop preferences
+   */
+  function saveSettings() {
+    var desc = new ActionDescriptor();
+    desc.putBoolean(0, isSeparate.value);
+    desc.putBoolean(1, isSort.value);
+    desc.putBoolean(2, isReverse.value);
+    app.putCustomOptions(CFG.settings, desc, true);
+  }
+
+  /**
+   * Load options from Photoshop preferences
+   */
   function loadSettings() {
     try {
       var desc = app.getCustomOptions(CFG.settings);
@@ -243,14 +307,6 @@ function main() {
         return;
       } catch (err) {}
     }
-  }
-
-  function saveSettings() {
-    var desc = new ActionDescriptor();
-    desc.putBoolean(0, isSeparate.value);
-    desc.putBoolean(1, isSort.value);
-    desc.putBoolean(2, isReverse.value);
-    app.putCustomOptions(CFG.settings, desc, true);
   }
 
   win.center();

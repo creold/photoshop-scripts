@@ -12,16 +12,16 @@
 Описание каждого скрипта также находится внутри его файла. Тестировалось в Photoshop CC 2019, 2024 (Mac OS).   
 
 ## Скрипты
-* [ArtboardsFromCSV](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#artboardsfromcsv) `(new, 15.01.2024)`
-* [ClearLayer](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#clearlayer)
-* [ExportPathsToAi](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#exportpathstoai)
-* [GeneratePreview](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#multiedittext)
-* [MultiEditText](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#generatepreview) `(new, 10.04.2024)`
-* [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#renameartboardassize) `(new, 08.01.2024)`
-* [SaveAll](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#saveall)
-* [SelectShapesByColor](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#selectshapesbycolor) `(upd, 10.08.2022)`
-* [TIFF2Print](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#tiff2print-10)
-* [ToggleLayersLocksByName](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#togglelayerslocksbyname)
+* [ArtboardsFromCSV](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#artboardsfromcsv) `v0.2 - new, 15.01.2024`
+* [ClearLayer](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#clearlayer) `v0.1 - 06.2019`
+* [ExportPathsToAi](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#exportpathstoai) `v0.2 - upd, 08.2022`
+* [GeneratePreview](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#generatepreview) `v0.1 - 10.2018`
+* [MultiEditText](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#multiedittext) `v0.2 — upd, 14.02.2025`
+* [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#renameartboardassize) `v0.1.1 - new, 08.01.2024`
+* [SaveAll](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#saveall) `v0.1 - 10.2018`
+* [SelectShapesByColor](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#selectshapesbycolor) `v0.2 - 04.2022`
+* [TIFF2Print](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#tiff2print) `v1.1 - 08.2018`
+* [ToggleLayersLocksByName](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#togglelayerslocksbyname) `v0.1 - 09.2021`
 
 <a href="http://bit.ly/2wLaIkq">
   <img width="126" height="43" src="https://i.ibb.co/VWMw1YV/download-ru-ps.png">
@@ -76,7 +76,7 @@
 </a>
 
 ## ArtboardsFromCSV
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ArtboardsFromCSV.jsx-4873FF.svg)](https://rebrand.ly/ps-absfromcsv) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ArtboardsFromCSV.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-absfromcsv) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
 
 Скрипт создаёт в документе артборды в одну колонку по информации из CSV-таблиц. Размер артбордов рассчитывается в единицах из `Preferences → Units & Rulers`.   
 *Основано на скрипте [Кристиана Андерсена](https://community.adobe.com/t5/photoshop-ecosystem-discussions/how-to-create-artboards-from-script/m-p/9345495#M112921), 2017.*   
@@ -84,14 +84,14 @@
 ![ArtboardsFromCSV](https://i.ibb.co/BjGNPGz/Artboards-From-CSV.gif) 
 
 ## ClearLayer
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ClearLayer.jsx-4873FF.svg)](https://rebrand.ly/ps-clrlyr) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ClearLayer.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-clrlyr) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
 
 Скрипт удаляет видимое содержимое выбранного слоя. Заменяет ручные команды: выделить всё и очистить.
 
 ![ClearLayer](https://i.ibb.co/hV7NFxB/Clear-Layer.gif) 
 
 ## ExportPathsToAi
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ExportPathsToAi.jsx-4873FF.svg)](https://rebrand.ly/ps-exppths) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ExportPathsToAi.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-exppths) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Экспортирует все видимые векторные слои из `.psd` в файл `.ai` в ту же папку, где и оригинальный файл. Ограничения Photoshop:
 
@@ -101,14 +101,14 @@
 ![ExportPathsToAi](https://i.ibb.co/SXt6r4X/Export-Paths-To-Ai.gif) 
 
 ## GeneratePreview
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-GeneratePreview.jsx-4873FF.svg)](https://rebrand.ly/ps-genprvw) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-GeneratePreview.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-genprvw) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Сохраняет JPG активного документа. При повторном запуске на документе может сохранять под новым номером, например, чтобы сохранять в множестве JPG разное состояние документа. Если хотите изменить размер JPG, откройте файл скрипта текстовым редактором и замените число в пикселях `var jpegSizeMax = 1200`. Это размер бОльшей стороны, которую скрипт автоматически определит и сохранит пропорционально.
 
 ![GeneratePreview](https://i.ibb.co/HrcPNvs/Generate-Preview.gif)
 
 ## MultiEditText
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-MultiEditText.jsx-4873FF.svg)](https://rebrand.ly/ps-metxt) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-MultiEditText.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-metxt) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Мультиредактирование выбранных текстовых слоев. Скрипт позволяет вводить одинаковый текст, заменяя текущее содержимое текстового слоя или добавляя введенный текст к текущему.
 
@@ -125,7 +125,7 @@
 ![MultiTextEdit](https://i.ibb.co/Wngmytk/Multi-Edit-Text.gif)
 
 ## RenameArtboardAsSize
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-RenameArtboardAsSize.jsx-4873FF.svg)](https://rebrand.ly/ps-renabsassize) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-RenameArtboardAsSize.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-renabsassize) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Добавляет к имени артборда его размеры в единицах измерения из `Preferences > Units & Rulers`.
 
@@ -135,19 +135,19 @@
 ![RenameArtboardAsSize](https://i.ibb.co/1nzr1xh/Rename-Artboard-As-Size.gif)
 
 ## SaveAll
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-SaveAll.jsx-4873FF.svg)](https://rebrand.ly/ps-svall) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-SaveAll.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-svall) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Сохраняет все открытые документы.
 
 ## SelectShapesByColor
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-SelectShapesByColor.jsx-4873FF.svg)](https://rebrand.ly/ps-selbycol) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-SelectShapesByColor.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-selbycol) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Выделяет все векторные слои и текстовые объекты в документе, которые имеют тот же цвет, что и активный слой. Будут выделены и заблокированные слои. Если хотите выделять также слои-заливки `Layer > New Fill Layer > Solid Color...`, откройте файл скрипта текстовым редактором и поставьте `var inclSolid = true`.
 
 ![SelectShapesByColor](https://i.ibb.co/12FjgfN/Select-Shapes-By-Color.gif) 
 
-## TIFF2Print 1.0
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-TIFF2Print.jsx-4873FF.svg)](https://rebrand.ly/ps-tif2prt) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+## TIFF2Print
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-TIFF2Print.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-tif2prt) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Сохраняет .tif файл для печати из макета.   
 
@@ -162,7 +162,7 @@
 ![TIFF2Print](https://i.ibb.co/ypbCFtX/tiff2print.gif) 
 
 ## ToggleLayersLocksByName
-[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ToggleLayersLocksByName.jsx-4873FF.svg)](https://rebrand.ly/ps-tglyrlock) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
+[![Direct](https://img.shields.io/badge/Прямая%20ссылка-ToggleLayersLocksByName.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-tglyrlock) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
 
 Блокирует в документе слои по ключевому слову в имени. Откройте файл скрипта текстовым редактором, если хотите задать другое ключевое слово и замените текст в кавычках `key = '[lock]'`.
 
