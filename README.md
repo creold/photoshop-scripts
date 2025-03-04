@@ -20,6 +20,7 @@ The descriptions for each file can be found in the file’s header text. Test en
 * [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts#renameartboardassize) `v0.1.1 - new, 08.01.2024`
 * [SaveAll](https://github.com/creold/photoshop-scripts#saveall) `v0.1 - 10.2018`
 * [SelectShapesByColor](https://github.com/creold/photoshop-scripts#selectshapesbycolor) `v0.2 - 04.2022`
+* [TextBlock](https://github.com/creold/photoshop-scripts/blob/master/README.md#textblock) `v0.1 - new, 04.03.2025`
 * [TIFF2Print](https://github.com/creold/photoshop-scripts#tiff2print) `v1.1 - 08.2018`
 * [ToggleLayersLocksByName](https://github.com/creold/photoshop-scripts#togglelayerslocksbyname) `v0.1 - 09.2021`
 
@@ -145,6 +146,13 @@ Save all opened docs in one click.
 Selects all vector layers and text objects in the document that have the same color as the active layer. Locked layers will also be selected. If you also want to select solid layers `Layer > New Fill Layer > Solid Color...`, edit in script file `var inclSolid = true`.
 
 ![SelectShapesByColor](https://i.ibb.co/12FjgfN/Select-Shapes-By-Color.gif) 
+
+## TextBlock
+[![Direct](https://img.shields.io/badge/Direct%20Link-TextBlock.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-txtblck) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
+
+Creates a block of selected text layers with specified width and spacing. The order of the layers in the block corresponds to the order of the original layers on the Y-axis. Layers are grouped together. Supported units: px, pt, in, mm, cm, m, ft, and yd.
+
+![TextBlock](https://i.ibb.co/TD78vkNW/Text-Block-PS.gif) 
 
 ## TIFF2Print
 [![Direct](https://img.shields.io/badge/Direct%20Link-TIFF2Print.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-tif2prt) [![Download](https://img.shields.io/badge/Download%20All-Zip%20archive-AAA9BC.svg)](https://bit.ly/2wLaIkq)   
