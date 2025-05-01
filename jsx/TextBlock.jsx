@@ -2,14 +2,16 @@
   TextBlock.jsx for Adobe Photoshop
   Description: Convert selected text layers into a block of text
   Date: March, 2025
+  Modification date: April, 2025
   Author: Sergey Osokin, email: hi@sergosokin.ru
 
-  Based on TextBlock.jsx by Carlos Canto for Adobe Illustrator:
-  https://gist.github.com/creold/4a6f3c4ad0174d9ad5f6463ba5c47696
+  Version for Adobe Illustrator:
+  https://github.com/creold/illustrator-scripts/blob/master/md/Text.md
 
   Installation: https://github.com/creold/photoshop-scripts#how-to-run-scripts
 
   Release notes:
+  0.2 Added option to center text block and hide/remove original layers
   0.1 Initial version
 
   Donate (optional):
@@ -36,24 +38,24 @@ app.bringToFront();
 function main() {
   var SCRIPT = {
     name: 'Text Block',
-    version: 'v0.1'
+    version: 'v0.2'
   };
 
   var CFG = {
     width: '300 px', // Text Block width
     spacing: '10 px', // Text lines spacing
+    units: app.preferences.rulerUnits,
     isMac: /mac/i.test($.os),
     settings: 'TB_settings',
   };
 
   if (!isCorrectEnv()) return;
   var doc = app.activeDocument;
-  var currState = doc.activeHistoryState;
   var idx = getSelectedLayersIdx();
 
   var texts = getTextLayers(doc.layers, idx);
   if (texts.length < 2) {
-    alert('Texts not found\nPlease select atleast two text layers and try again', 'Script error');
+    alert('Texts not found\nPlease select at least two text layers and try again', 'Script error');
     return;
   }
 
@@ -65,11 +67,11 @@ function main() {
       win.alignChildren = ['fill', 'top'];
 
   // INPUTS
-  var pnl = win.add('panel', undefined, 'Block Settings');
-      pnl.alignChildren = ['fill', 'top'];
-      pnl.margins = [10, 15, 5, 15];
+  var settPnl = win.add('panel', undefined, 'Block Settings');
+      settPnl.alignChildren = ['fill', 'top'];
+      settPnl.margins = [10, 15, 5, 15];
 
-  var wrapper1 = pnl.add('group');
+  var wrapper1 = settPnl.add('group');
       wrapper1.alignChildren = ['left', 'center'];
 
   var wLbl = wrapper1.add('statictext', undefined, 'Width:');
@@ -80,9 +82,7 @@ function main() {
       wInp.helpTip = 'Supporterd units:\npx, pt, in, mm, cm, m, ft, yd';
       wInp.active = true;
 
-  wrapper1.add('statictext', undefined, CFG.units);
-
-  var wrapper2 = pnl.add('group');
+  var wrapper2 = settPnl.add('group');
       wrapper2.alignChildren = ['left', 'center'];
   
   var spLbl = wrapper2.add('statictext', undefined, 'Spacing:');
@@ -92,7 +92,17 @@ function main() {
       spInp.preferredSize.width = 80;
       spInp.helpTip = 'Supporterd units:\npx, pt, in, mm, cm, m, ft, yd';
 
-  wrapper2.add('statictext', undefined, CFG.units);
+  var isToCenter = settPnl.add('checkbox', undefined, 'Center To Canvas');
+
+  // ORIGINAL LAYERS POST-PROCESS
+  var origPnl = win.add('panel', undefined, 'Original Texts');
+      origPnl.alignChildren = ['fill', 'top'];
+      origPnl.margins = [10, 15, 5, 15];
+
+  var isKeep = origPnl.add('radiobutton', undefined, 'Keep');
+      isKeep.value = true;
+  var isHide = origPnl.add('radiobutton', undefined, 'Hide');
+  var isRemove = origPnl.add('radiobutton', undefined, 'Remove');
 
   // BUTTONS
   var btns = win.add('group');
@@ -123,6 +133,12 @@ function main() {
     this.text = num + ' ' + units;
   }
 
+  /**
+   * Use Up / Down arrow keys (+ Shift) to change value
+   */
+  bindStepperKeys(wInp, 0.1, 100000);
+  bindStepperKeys(spInp, 0, 100000);
+
   cancel.onClick = win.close;
 
   ok.onClick = function () {
@@ -134,20 +150,26 @@ function main() {
   });
 
   function okClick() {
+    saveSettings();
+
+    app.preferences.rulerUnits = Units.PIXELS;
+
     var wUnits = parseUnits(wInp.text, 'px');
-    var newWidth = convertUnits( strToNum(wInp.text, CFG.width), wUnits, 'px' );
+    var blockWidth = convertUnits( strToNum(wInp.text, CFG.width), wUnits, 'px' );
 
     var spUnits = parseUnits(spInp.text, 'px');
-    var spacing = convertUnits( strToNum(spInp.text, CFG.spacing), spUnits, 'px' );
+    var blockSpacing = convertUnits( strToNum(spInp.text, CFG.spacing), spUnits, 'px' );
   
     // Add a group to final output
-    var textGroup = activeDocument.layerSets.add();
+    var textGroup = doc.layerSets.add();
     textGroup.name = 'Text Block';
   
-    var top = 0;
-    var right = texts[texts.length - 1].bounds[2];
-    var firstTop = texts[0].bounds[1];
+    var nextTop = 0;
+    var posLeft = texts[0].bounds[0];
+    var posRight = texts[0].bounds[2];
+    var posTop = texts[0].bounds[1];
   
+    // Create text block
     for (var i = 0; i < texts.length; i++) {
       var currText = texts[i];
       var dupText = currText.duplicate(textGroup, ElementPlacement.PLACEATEND);
@@ -155,7 +177,7 @@ function main() {
   
       var bounds = dupText.bounds;
       var currWidth = bounds[2].value - bounds[0].value;
-      var ratio = (newWidth / currWidth) * 100;
+      var ratio = (blockWidth / currWidth) * 100;
   
       dupText.resize(ratio, ratio, AnchorPosition.TOPLEFT);
   
@@ -163,14 +185,56 @@ function main() {
       var deltaX = bounds[0].value;
       var deltaY = bounds[1].value;
   
-      dupText.translate(-deltaX, -deltaY + top + spacing);
-      top += bounds[3].value - bounds[1].value + spacing;
+      dupText.translate(-deltaX, -deltaY + nextTop + blockSpacing);
+      nextTop += bounds[3].value - bounds[1].value + blockSpacing;
     }
 
-    textGroup.translate(right, firstTop);
+    // Align text block
+    if (isToCenter.value) {
+      alignToCenter(doc, textGroup);
+    } else if (!isKeep.value) {
+      textGroup.translate(posLeft, posTop);
+    } else {
+      textGroup.translate(posRight, posTop);
+    }
 
-    saveSettings();
+    // Original layers
+    for(var j = texts.length - 1; j >= 0; j--){
+      if (isHide.value) {
+        texts[j].visible = false;
+      } else if (isRemove.value) {
+        texts[j].remove();
+      }
+    }
+
+    app.preferences.rulerUnits = CFG.units;
+
     win.close();
+  }
+
+  /**
+   * Handle keyboard input to shift numerical values
+   * @param {Object} input - The input element to which the event listener will be attached
+   * @param {number} min - The minimum allowed value for the numerical input
+   * @param {number} max - The maximum allowed value for the numerical input
+   * @returns {void}
+   */
+  function bindStepperKeys(input, min, max) {
+    input.addEventListener('keydown', function (kd) {
+      var step = ScriptUI.environment.keyboardState['shiftKey'] ? 10 : 1;
+      var units = parseUnits(this.text, 'pt');
+      var num = parseFloat(this.text);
+      if (kd.keyName == 'Down' || kd.keyName == 'LeftBracket') {
+        this.text = (min && (num - step) < min) ? min : num - step;
+        this.text += ' ' + units;
+        kd.preventDefault();
+      }
+      if (kd.keyName == 'Up' || kd.keyName == 'RightBracket') {
+        this.text = (max && (num + step) > max) ? max : num + step;
+        this.text += ' ' + units;
+        kd.preventDefault();
+      }
+    });
   }
 
   /**
@@ -180,6 +244,10 @@ function main() {
     var desc = new ActionDescriptor();
     desc.putString(0, wInp.text);
     desc.putString(1, spInp.text);
+    desc.putBoolean(2, isToCenter.value);
+    desc.putBoolean(3, isKeep.value);
+    desc.putBoolean(4, isHide.value);
+    desc.putBoolean(5, isRemove.value);
     app.putCustomOptions(CFG.settings, desc, true);
   }
 
@@ -194,6 +262,10 @@ function main() {
       try {
         wInp.text = desc.getString(0);
         spInp.text = desc.getString(1);
+        isToCenter.value = desc.getBoolean(2);
+        isKeep.value = desc.getBoolean(3);
+        isHide.value = desc.getBoolean(4);
+        isRemove.value = desc.getBoolean(5);
         return;
       } catch (err) {}
     }
@@ -406,6 +478,30 @@ function strToNum(str, def) {
   str = str[0] ? str[0] + '.' + str.slice(1).join('') : '';
   if (isNaN(str) || !str.length) return parseFloat(def);
   else return parseFloat(str);
+}
+
+/**
+ * Center an item within the document canvas
+ *
+ * @param {Object} doc - The Photoshop document
+ * @param {Object} item - The layer or group to be centered
+ * @returns {void}
+ */
+function alignToCenter(doc, item) {
+  var bnds = item.bounds;
+  var width = bnds[2] - bnds[0];
+  var height = bnds[3] - bnds[1];
+
+  var docCenterX = doc.width / 2;
+  var docCenterY = doc.height / 2;
+
+  var currCenterX = bnds[0] + width / 2;
+  var currCenterY = bnds[1] + height / 2;
+
+  var offsetX = docCenterX - currCenterX;
+  var offsetY = docCenterY - currCenterY;
+
+  item.translate(offsetX, offsetY);
 }
 
 /**

@@ -20,7 +20,7 @@
 * [RenameArtboardAsSize](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#renameartboardassize) `v0.1.1 - new, 08.01.2024`
 * [SaveAll](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#saveall) `v0.1 - 10.2018`
 * [SelectShapesByColor](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#selectshapesbycolor) `v0.2 - 04.2022`
-* [TextBlock](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#textblock) `v0.1 - new, 04.03.2025`
+* [TextBlock](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#textblock) `v0.2 - upd, 30.04.2025`
 * [TIFF2Print](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#tiff2print) `v1.1 - 08.2018`
 * [ToggleLayersLocksByName](https://github.com/creold/photoshop-scripts/blob/master/README.ru.md#togglelayerslocksbyname) `v0.1 - 09.2021`
 
@@ -152,7 +152,9 @@
 
 Создаёт блок заданной ширины из выбранных текстовых слоёв с отступами. Порядок в блоке соответствует расположению исходных текстов по оси Y сверху вниз. Слои объединяются в группу. Поддерживаемые единицы измерения: px, pt, in, mm, cm, m, ft и yd.
 
-![TextBlock](https://i.ibb.co/TD78vkNW/Text-Block-PS.gif) 
+Смотрите также [версию для Adobe Illustrator](https://github.com/creold/illustrator-scripts/blob/master/md/Text.ru.md) 
+
+![TextBlock](https://i.ibb.co/fzjtj6pB/Text-Block-PS.gif) 
 
 ## TIFF2Print
 [![Direct](https://img.shields.io/badge/Прямая%20ссылка-TIFF2Print.jsx-4873FF.svg)](https://link.aiscripts.ru/ps-tif2prt) [![Download](https://img.shields.io/badge/Скачать%20все-Zip--архив-AAA9BC.svg)](https://bit.ly/2wLaIkq)  
